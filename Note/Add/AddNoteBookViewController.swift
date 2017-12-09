@@ -21,8 +21,7 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         let viewNib = UINib(nibName: "NotebookCoverCollectionViewCell", bundle: nil)
         self.collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
         
-        
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.tintColor = UIColor.white// Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

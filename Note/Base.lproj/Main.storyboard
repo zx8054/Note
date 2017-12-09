@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fLU-jm-sAd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fLU-jm-sAd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -379,6 +379,7 @@
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Aqt-9F-9H7" customClass="PageViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1T6-PC-bPk">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="w5r-yA-UCg"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="aBk-Io-S2H">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -392,7 +393,8 @@
                                     <segue destination="NxP-Ac-hCe" kind="showDetail" id="WeU-4t-iu9"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" id="c6g-g6-N2W">
+                            <barButtonItem title="addbook" image="addBook" id="c6g-g6-N2W">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="V7h-S2-xNE" kind="show" id="w2P-RW-6NP"/>
                                 </connections>
@@ -579,7 +581,7 @@
             </objects>
             <point key="canvasLocation" x="2871" y="84"/>
         </scene>
-        <!--Add Note Book View Controller-->
+        <!--新建笔记本-->
         <scene sceneID="FTw-uk-raB">
             <objects>
                 <viewController id="V7h-S2-xNE" customClass="AddNoteBookViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
@@ -641,7 +643,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WBo-2I-kTf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="B7Y-0q-ffZ"/>
+                    <navigationItem key="navigationItem" title="新建笔记本" id="B7Y-0q-ffZ">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="rJZ-Cc-e7h">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Trb-OM-49s" id="jFN-74-vbo"/>
                     </connections>
@@ -840,6 +846,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addBook" width="64" height="64"/>
         <image name="back" width="42" height="42"/>
         <image name="background" width="360" height="610"/>
         <image name="default" width="202" height="256"/>

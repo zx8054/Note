@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FB01DEE31FB5DBE1006CE12C /* NoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB01DEE21FB5DBE1006CE12C /* NoteBook.swift */; };
 		FB01DEE51FB5DD92006CE12C /* NoteBookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB01DEE41FB5DD92006CE12C /* NoteBookViewCell.swift */; };
-		FB1395341FD832DB000D7E92 /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1395331FD832DB000D7E92 /* CHTCollectionViewWaterfallLayout.swift */; };
 		FB1395381FD833D5000D7E92 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1395371FD833D5000D7E92 /* MemoViewController.swift */; };
 		FB13953B1FD835D0000D7E92 /* MemoUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1395391FD835D0000D7E92 /* MemoUICollectionViewCell.swift */; };
 		FB13953C1FD835D0000D7E92 /* MemoUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB13953A1FD835D0000D7E92 /* MemoUICollectionViewCell.xib */; };
@@ -21,8 +20,9 @@
 		FB4524CA1FB3FC20005697B4 /* Note.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB4524C81FB3FC20005697B4 /* Note.xcdatamodeld */; };
 		FB4524CC1FB3FC20005697B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4524CB1FB3FC20005697B4 /* Assets.xcassets */; };
 		FB4524CF1FB3FC20005697B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4524CD1FB3FC20005697B4 /* LaunchScreen.storyboard */; };
-		FBB22CC41FD64AA4006422C7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22CC31FD64AA4006422C7 /* SWRevealViewController.m */; };
 		FBB22CC61FD6C20F006422C7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB22CC51FD6C20F006422C7 /* DataManager.swift */; };
+		FBDF02EF1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF02EE1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift */; };
+		FBDF02F21FDD7F95009F249B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */; };
 		FBE2CC401FD51F7C00DC9A8F /* NoteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC3F1FD51F7C00DC9A8F /* NoteSection.swift */; };
 		FBE2CC441FD54E6B00DC9A8F /* addNoteSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC431FD54E6B00DC9A8F /* addNoteSectionViewController.swift */; };
 		FBE2CC4A1FD56E2000DC9A8F /* NoteMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC491FD56E2000DC9A8F /* NoteMenuTableViewController.swift */; };
@@ -41,7 +41,6 @@
 /* Begin PBXFileReference section */
 		FB01DEE21FB5DBE1006CE12C /* NoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBook.swift; sourceTree = "<group>"; };
 		FB01DEE41FB5DD92006CE12C /* NoteBookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookViewCell.swift; sourceTree = "<group>"; };
-		FB1395331FD832DB000D7E92 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = "../../../../../Downloads/CHTCollectionViewWaterfallLayout-develop/CHTCollectionViewWaterfallLayout.swift"; sourceTree = "<group>"; };
 		FB1395371FD833D5000D7E92 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		FB1395391FD835D0000D7E92 /* MemoUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoUICollectionViewCell.swift; sourceTree = "<group>"; };
 		FB13953A1FD835D0000D7E92 /* MemoUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoUICollectionViewCell.xib; sourceTree = "<group>"; };
@@ -56,9 +55,10 @@
 		FB4524CE1FB3FC20005697B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB4524D01FB3FC20005697B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB22CC11FD64AA4006422C7 /* Note-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note-Bridging-Header.h"; sourceTree = "<group>"; };
-		FBB22CC21FD64AA4006422C7 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
-		FBB22CC31FD64AA4006422C7 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		FBB22CC51FD6C20F006422C7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FBDF02EE1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		FBDF02F01FDD7F95009F249B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
+		FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		FBE2CC3F1FD51F7C00DC9A8F /* NoteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSection.swift; sourceTree = "<group>"; };
 		FBE2CC431FD54E6B00DC9A8F /* addNoteSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNoteSectionViewController.swift; sourceTree = "<group>"; };
 		FBE2CC491FD56E2000DC9A8F /* NoteMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		FB1395321FD832B2000D7E92 /* CHTCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				FB1395331FD832DB000D7E92 /* CHTCollectionViewWaterfallLayout.swift */,
+				FBDF02EE1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift */,
 			);
 			path = CHTCollectionView;
 			sourceTree = "<group>";
@@ -174,8 +174,8 @@
 		FBB22CC01FD64A5E006422C7 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FBB22CC21FD64AA4006422C7 /* SWRevealViewController.h */,
-				FBB22CC31FD64AA4006422C7 /* SWRevealViewController.m */,
+				FBDF02F01FDD7F95009F249B /* SWRevealViewController.h */,
+				FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */,
 				FBB22CC11FD64AA4006422C7 /* Note-Bridging-Header.h */,
 			);
 			path = SWRevealViewController;
@@ -283,6 +283,7 @@
 				FB1395381FD833D5000D7E92 /* MemoViewController.swift in Sources */,
 				FB13953B1FD835D0000D7E92 /* MemoUICollectionViewCell.swift in Sources */,
 				FBF88F661FDBADC900A5DB48 /* AddViewController.swift in Sources */,
+				FBDF02F21FDD7F95009F249B /* SWRevealViewController.m in Sources */,
 				FB4524CA1FB3FC20005697B4 /* Note.xcdatamodeld in Sources */,
 				FB01DEE51FB5DD92006CE12C /* NoteBookViewCell.swift in Sources */,
 				FBB22CC61FD6C20F006422C7 /* DataManager.swift in Sources */,
@@ -299,9 +300,8 @@
 				FB1395411FD8E3D3000D7E92 /* Memo.swift in Sources */,
 				FBE2CC401FD51F7C00DC9A8F /* NoteSection.swift in Sources */,
 				FBF711C31FDBD4BD009F014A /* NotebookCoverCollectionViewCell.swift in Sources */,
-				FBB22CC41FD64AA4006422C7 /* SWRevealViewController.m in Sources */,
-				FB1395341FD832DB000D7E92 /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				FBE2CC4A1FD56E2000DC9A8F /* NoteMenuTableViewController.swift in Sources */,
+				FBDF02EF1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				FB13953F1FD8DDA3000D7E92 /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

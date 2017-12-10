@@ -115,6 +115,7 @@ extension AddViewController : UIPickerViewDataSource{
             selectNumber = row-1
         }
         else{
+            selectNumber = -1
             self.labelName.text = String("<便笺>")
         }
     }

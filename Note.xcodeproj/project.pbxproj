@@ -22,7 +22,7 @@
 		FB4524CF1FB3FC20005697B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4524CD1FB3FC20005697B4 /* LaunchScreen.storyboard */; };
 		FBB22CC61FD6C20F006422C7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB22CC51FD6C20F006422C7 /* DataManager.swift */; };
 		FBDF02EF1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF02EE1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift */; };
-		FBDF02F21FDD7F95009F249B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */; };
+		FBDF02FC1FDD8521009F249B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDF02FB1FDD8521009F249B /* SWRevealViewController.m */; };
 		FBE2CC401FD51F7C00DC9A8F /* NoteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC3F1FD51F7C00DC9A8F /* NoteSection.swift */; };
 		FBE2CC441FD54E6B00DC9A8F /* addNoteSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC431FD54E6B00DC9A8F /* addNoteSectionViewController.swift */; };
 		FBE2CC4A1FD56E2000DC9A8F /* NoteMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2CC491FD56E2000DC9A8F /* NoteMenuTableViewController.swift */; };
@@ -57,8 +57,8 @@
 		FBB22CC11FD64AA4006422C7 /* Note-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note-Bridging-Header.h"; sourceTree = "<group>"; };
 		FBB22CC51FD6C20F006422C7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FBDF02EE1FDD7F68009F249B /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
-		FBDF02F01FDD7F95009F249B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
-		FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		FBDF02FA1FDD8521009F249B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		FBDF02FB1FDD8521009F249B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		FBE2CC3F1FD51F7C00DC9A8F /* NoteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSection.swift; sourceTree = "<group>"; };
 		FBE2CC431FD54E6B00DC9A8F /* addNoteSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNoteSectionViewController.swift; sourceTree = "<group>"; };
 		FBE2CC491FD56E2000DC9A8F /* NoteMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 		FBB22CC01FD64A5E006422C7 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FBDF02F01FDD7F95009F249B /* SWRevealViewController.h */,
-				FBDF02F11FDD7F95009F249B /* SWRevealViewController.m */,
+				FBDF02FA1FDD8521009F249B /* SWRevealViewController.h */,
+				FBDF02FB1FDD8521009F249B /* SWRevealViewController.m */,
 				FBB22CC11FD64AA4006422C7 /* Note-Bridging-Header.h */,
 			);
 			path = SWRevealViewController;
@@ -283,7 +283,7 @@
 				FB1395381FD833D5000D7E92 /* MemoViewController.swift in Sources */,
 				FB13953B1FD835D0000D7E92 /* MemoUICollectionViewCell.swift in Sources */,
 				FBF88F661FDBADC900A5DB48 /* AddViewController.swift in Sources */,
-				FBDF02F21FDD7F95009F249B /* SWRevealViewController.m in Sources */,
+				FBDF02FC1FDD8521009F249B /* SWRevealViewController.m in Sources */,
 				FB4524CA1FB3FC20005697B4 /* Note.xcdatamodeld in Sources */,
 				FB01DEE51FB5DD92006CE12C /* NoteBookViewCell.swift in Sources */,
 				FBB22CC61FD6C20F006422C7 /* DataManager.swift in Sources */,

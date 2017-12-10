@@ -10,7 +10,9 @@ import UIKit
 
 class AddViewController: UIViewController{
 
+    var selectNumber = -1
     @IBOutlet weak var chooseButton: UIButton!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var labelName: UILabel!
     var inChoose = false
     @IBOutlet weak var contentView: UIView!
@@ -22,6 +24,13 @@ class AddViewController: UIViewController{
     @IBOutlet weak var pickerView: UIPickerView!
     
     
+    @IBAction func saveAction(_ sender: UIBarButtonItem) {
+        if(selectNumber == -1){
+            var memo = Memo(newContent: self.textView.text, newImage: UIImage(named:"whitePaper")!, newDate: Date())
+            dataManager.memos.append(memo)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +41,7 @@ class AddViewController: UIViewController{
         
         
         chooseButton.setBackgroundImage(UIImage(named:"bookblack"), for: UIControlState())
-        labelName.text = "<左边按钮选择>"
+        labelName.text = "<左边按钮选择(默认便笺)>"
         blurView.isHidden = true
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -88,15 +97,26 @@ extension AddViewController : UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataManager.notebooks.count
+        return dataManager.notebooks.count + 1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataManager.notebooks[row].noteName
+        if(row > 0){
+            return dataManager.notebooks[row-1].noteName
+        }
+        else {
+            return "便笺"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.labelName.text = String("<") + dataManager.notebooks[row].noteName! + String(">")
+        if(row > 0){
+        self.labelName.text = String("<") + dataManager.notebooks[row-1].noteName! + String(">")
+            selectNumber = row-1
+        }
+        else{
+            self.labelName.text = String("<便笺>")
+        }
     }
     
     

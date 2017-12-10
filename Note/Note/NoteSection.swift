@@ -14,6 +14,7 @@ class NoteSection{
     var title:String?
     var content: String? //NSMutableAttributedString?
     var time : Date?
+    var representImage : UIImage = UIImage(named:"math1")!
     
     init?(newTitle:String,newContent:String?,newTime:Date?){
         

@@ -24,6 +24,10 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         return dataManager.notebooks.count
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cellIdentifer = "noteBookCell"
@@ -49,7 +53,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var NoteBookCollectionView: UICollectionView!
     
     private func initNotes(){
-        let defaultPhoto = UIImage(named:"default")
+        let defaultPhoto = UIImage(named:"cover1")
         
         if let defaultNote = NoteBook(photo: defaultPhoto!, str: "默认笔记", type: .diary){
             

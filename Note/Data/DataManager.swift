@@ -26,11 +26,11 @@ class DataManager{
     
     
     func initMemo(){
-        let memo1 = Memo(newContent: "今天",newImage: UIImage(named:"whitePaper")!,newDate: Date())
-        let memo2 = Memo(newContent: "明天", newImage: UIImage(named:"yellowPaper"
+        let memo1 = Memo(newContent: "概率论考试",newImage: UIImage(named:"whitePaper")!,newDate: Date())
+        let memo2 = Memo(newContent: "数据库考试", newImage: UIImage(named:"yellowPaper"
             )!, newDate: Date())
-        let memo3 = Memo(newContent: "后天",newImage: UIImage(named:"pinkPaper")!,newDate: Date())
-        let memo4 = Memo(newContent: "大后天", newImage: UIImage(named:"bluePaper"
+        let memo3 = Memo(newContent: "抢火车票",newImage: UIImage(named:"pinkPaper")!,newDate: Date())
+        let memo4 = Memo(newContent: "移动开发大作业", newImage: UIImage(named:"bluePaper"
             )!, newDate: Date())
         
         memos.append(memo1)
@@ -47,30 +47,28 @@ class DataManager{
     }
     
     func initNotes(){
-        let defaultPhoto = UIImage(named:"cover3")
         
-        if let defaultNote = NoteBook(photo: defaultPhoto!, str: "默认笔记", type: .diary){
-            
+        if let defaultNote = NoteBook(photo: UIImage(named:"cover3")!, str: "数学", type: .diary){
             notebooks += [defaultNote]
-            if let section1 = NoteSection(newTitle: "封面",newContent: "cccccc",newTime: Date()){
+            if let section1 = NoteSection(newTitle: "概率论",newContent: "c",newTime: Date()){
+                
+                section1.content = "概率论"
+                section1.representImage = UIImage(named:"math1")!
                 notebooks[0].notes += [section1]
+            }
+            if let section2 = NoteSection(newTitle: "统计",newContent: "c",newTime: Date()){
+                
+                section2.representImage = UIImage(named:"math2")!
+                section2.content = "统计"
+                notebooks[0].notes += [section2]
             }
             
         }
-        else{
-            return
-        }
         
-        if let secondeNote = NoteBook(photo:defaultPhoto!,str:"日记",type:.diary){
+        if let secondeNote = NoteBook(photo:UIImage(named:"cover1")!,str:"英语",type:.diary){
             notebooks += [secondeNote]
-            notebooks += [secondeNote]
-            notebooks += [secondeNote]
-            notebooks += [secondeNote]
-            notebooks += [secondeNote]
-            notebooks += [secondeNote]
+
         }
-        else{
-            return
-        }
+
     }
 }

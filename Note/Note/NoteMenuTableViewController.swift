@@ -48,7 +48,8 @@ class NoteMenuTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
         let noteItem = dataManager.notebooks[dataManager.currentIndex].notes[indexPath.row]
-        cell.imageView?.image = UIImage(named: "diary")
+        
+        cell.imageView?.image = noteItem.representImage
         cell.textLabel?.text = noteItem.title
         cell.textLabel?.backgroundColor = UIColor.clear
         cell.textLabel?.textColor = UIColor.black

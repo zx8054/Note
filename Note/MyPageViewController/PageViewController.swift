@@ -25,6 +25,24 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
     }
     
     
+    
+    @IBAction func chooseForSort(_ sender: UIBarButtonItem) {
+        
+        let alertVC = UIAlertController(title: "选择排序方法", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let acSortByCreateTime = UIAlertAction(title: "根据创建时间排序", style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+            print("click sort1")
+        }
+        let acSortByModifyTime = UIAlertAction(title: "根据修改时间排序", style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+            print("click sort2")
+        }
+        let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (UIAlertAction) -> Void in
+            print("click cancel")
+        }
+        alertVC.addAction(acSortByCreateTime)
+        alertVC.addAction(acSortByModifyTime)
+        alertVC.addAction(acCancel)
+        self.present(alertVC, animated: true, completion: nil)
+    }
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
@@ -120,8 +138,9 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
     
-    @IBAction func unwindToInitView(segue:UIStoryboardSegue) {
-    
+    @IBAction func unwindToInitView(segue:UIStoryboardSegue){
+        
+        
     }
     
     /*

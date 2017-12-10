@@ -10,11 +10,24 @@ import UIKit
 
 class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
 
+    var imageSet = [UIImage]()
     var selectedNumber : Int = -1
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBAction func saveAction(_ sender: UIBarButtonItem) {
+        if(selectedNumber != -1){
+            var note:NoteBook = NoteBook(photo: imageSet[selectedNumber], str: self.textField.text!, type: .diary)!
+            dataManager.notebooks.append(note)
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initIamgeSet()
         collectionView.delegate = self as! UICollectionViewDelegate
         collectionView.dataSource = self as! UICollectionViewDataSource
         
@@ -22,8 +35,17 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         self.collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
         
         self.navigationController?.navigationBar.tintColor = UIColor.white// Do any additional setup after loading the view.
+        
     }
 
+    func initIamgeSet(){
+        
+        imageSet.append(UIImage(named:"cover1")!)
+        imageSet.append(UIImage(named:"cover2")!)
+        imageSet.append(UIImage(named:"cover3")!)
+        imageSet.append(UIImage(named:"cover4")!)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,6 +65,9 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
             //设置头部标题
             let label = reusableview.viewWithTag(1) as! UILabel
             label.text = "请选择封面"
+            
+            let button = reusableview.viewWithTag(2) as! UIButton
+            //button.setBackgroundImage(UIImage(named:"camera"), for:UIControlState())
         }
         return reusableview
     }
@@ -66,13 +91,13 @@ extension AddNoteBookViewController:UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NotebookCoverCollectionViewCell
         
-        cell.image.image = UIImage(named:"cover3")
+        cell.image.image = imageSet[indexPath.row]
         
         if(selectedNumber != indexPath.row){
             cell.selectedButton.isHidden = true

@@ -35,6 +35,11 @@ class MyNoteDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let menuViewController = self.revealViewController().rearViewController as?
             NoteMenuTableViewController{
             menuViewController.tableView.reloadData()
@@ -51,8 +56,10 @@ class MyNoteDetailViewController: UIViewController {
         
         if(self.revealViewController() != nil){
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
         }
+        
+        self.textView.text = nil
+        self.navigationItem.title = dataManager.notebooks[dataManager.currentIndex].noteName
         // Do any additional setup after loading the view.
     }
 

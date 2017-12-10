@@ -13,6 +13,12 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate{
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textField: UITextField!
     
+    @IBAction func savaAction(_ sender: UIBarButtonItem) {
+        
+        var section = NoteSection(newTitle: textField.text!, newContent: textView.text, newTime: Date())
+        dataManager.notebooks[dataManager.currentIndex].notes.append(section!)
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = "输入" 
@@ -31,6 +37,8 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate{
             textView.text = nil
             textView.textColor = UIColor.black
         }
+        
+        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

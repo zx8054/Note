@@ -34,6 +34,18 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (self.view.bounds.size.width-30)/3, height: 140)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var reusableview:UICollectionReusableView!
+        if kind == UICollectionElementKindSectionHeader{
+            reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                  withReuseIdentifier: "headerView", for: indexPath)
+            //设置头部标题
+            let label = reusableview.viewWithTag(1) as! UILabel
+            label.text = "请选择封面"
+        }
+        return reusableview
+    }
 
     /*
     // MARK: - Navigation

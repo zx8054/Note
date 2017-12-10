@@ -16,7 +16,8 @@ class NoteMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         //notes = dataManager.currentNoteBook.notes
         self.tableView.rowHeight = (tableView.bounds.size.height - 70)/10
-
+        
+        self.tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -79,6 +80,11 @@ class NoteMenuTableViewController: UITableViewController {
         else{
             return
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        tableView.reloadData()
     }
     
     /*

@@ -33,6 +33,14 @@ class MyNoteDetailViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let menuViewController = self.revealViewController().rearViewController as?
+            NoteMenuTableViewController{
+            menuViewController.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

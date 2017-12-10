@@ -27,10 +27,10 @@ class SearchMainViewController: UIViewController {
         didSet{
             if(currentPage == 0){
                 NoteLabel.backgroundColor = UIColor.black
-                MemoLabel.backgroundColor = UIColor.green
+                MemoLabel.backgroundColor = UIColor.gray
             }
             else{
-                NoteLabel.backgroundColor = UIColor.green
+                NoteLabel.backgroundColor = UIColor.gray
                 MemoLabel.backgroundColor = UIColor.black
             }
             if(currentPage > lastPage){

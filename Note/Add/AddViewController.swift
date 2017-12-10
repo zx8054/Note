@@ -35,6 +35,7 @@ class AddViewController: UIViewController{
         labelName.text = "<左边按钮选择>"
         blurView.isHidden = true
 
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         //blurView.addSubview(pickerView)
     
         // Do any additional setup after loading the view.

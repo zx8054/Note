@@ -223,11 +223,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="GwA-mA-EDX"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7k-Kd-vRw">
-                                <rect key="frame" x="205" y="491" width="46" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -258,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="1133.5999999999999" y="-652.62368815592208"/>
         </scene>
-        <!--Add Note Section View Controller-->
+        <!--新建笔记-->
         <scene sceneID="ggy-Ul-lQ6">
             <objects>
                 <viewController id="jVz-Aj-lFB" customClass="addNoteSectionViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
@@ -296,25 +291,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.98328121609999997" blue="0.90019092769999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTL-fU-Iso">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="c7J-D1-RIL"/>
                     </view>
-                    <navigationItem key="navigationItem" id="asP-mA-wzg">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="TQo-GF-5pA">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <navigationItem key="navigationItem" title="新建笔记" id="gC1-sI-j6G">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="ilf-DP-Uie">
                             <connections>
-                                <segue destination="SmX-if-MsM" kind="unwind" unwindAction="unwindToDetailViewWithSegue:" id="2mL-yn-P6c"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="2Ae-zw-DBt">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="SmX-if-MsM" kind="unwind" unwindAction="unwindToDetailViewWithSegue:" id="EHU-FU-Ots"/>
+                                <action selector="savaAction:" destination="jVz-Aj-lFB" id="dfZ-Vh-naf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -324,9 +308,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G92-pw-fUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="SmX-if-MsM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5140" y="82"/>
+            <point key="canvasLocation" x="4705" y="82"/>
         </scene>
         <!--Memo View Controller-->
         <scene sceneID="VaF-Uw-2fp">
@@ -372,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rzi-x9-5Zj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="310"/>
+            <point key="canvasLocation" x="1134" y="64"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="dcz-jV-Dd1">
@@ -384,7 +367,7 @@
                             <barButtonItem systemItem="add" id="aBk-Io-S2H">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="4d5-ey-4Wm" kind="showDetail" id="iR6-ki-oxB"/>
+                                    <segue destination="TqD-eh-dAa" kind="push" id="Go5-77-zKF"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="search" id="9mq-m4-y6l">
@@ -547,7 +530,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RTB-Wc-mMc">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="LCb-Uu-O53" kind="show" id="395-f6-LAR"/>
+                                <segue destination="jVz-Aj-lFB" kind="push" id="v7x-sk-if4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -612,13 +595,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="vj9-Sg-qnJ">
                                     <size key="itemSize" width="120" height="300"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="20" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="x8r-Zp-hNb">
-                                        <rect key="frame" x="10" y="20" width="120" height="300"/>
+                                        <rect key="frame" x="10" y="70" width="120" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="300"/>
@@ -626,6 +609,24 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerView" id="cgJ-Mg-eqB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择封面图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUP-Hn-Sy1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gUP-Hn-Sy1" firstAttribute="top" secondItem="cgJ-Mg-eqB" secondAttribute="top" id="90b-Ri-0Hr"/>
+                                        <constraint firstItem="gUP-Hn-Sy1" firstAttribute="leading" secondItem="cgJ-Mg-eqB" secondAttribute="leading" id="p9O-OK-6w4"/>
+                                        <constraint firstAttribute="trailing" secondItem="gUP-Hn-Sy1" secondAttribute="trailing" id="rqp-0u-WGu"/>
+                                        <constraint firstAttribute="bottom" secondItem="gUP-Hn-Sy1" secondAttribute="bottom" id="vda-xY-sJz"/>
+                                    </constraints>
+                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.95123590646475897" green="0.97019749369999997" blue="0.96208786023200299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -654,26 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6p-V4-aAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="762"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="LjC-KU-1mT">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LCb-Uu-O53" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jMK-Vu-IcS">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="jVz-Aj-lFB" kind="relationship" relationship="rootViewController" id="Wlg-u8-MAa"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pX1-Gy-POn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4358" y="83"/>
+            <point key="canvasLocation" x="2125.5999999999999" y="761.46926536731644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EXK-z1-xuw">
@@ -694,7 +676,7 @@
             </objects>
             <point key="canvasLocation" x="-919" y="-140"/>
         </scene>
-        <!--Add View Controller-->
+        <!--新建笔记-->
         <scene sceneID="2W2-lS-lUS">
             <objects>
                 <viewController id="TqD-eh-dAa" customClass="AddViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
@@ -782,15 +764,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5OC-bt-VVE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9eW-mb-wH4">
-                        <barButtonItem key="leftBarButtonItem" title="返回" id="Pdu-Wi-NJw">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <segue destination="Dkt-5v-v9P" kind="unwind" unwindAction="unwindToInitViewWithSegue:" id="nDN-ON-yWb"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="n1e-TP-iE0">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <navigationItem key="navigationItem" title="新建笔记" id="THa-xh-hQ9">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="bnX-OK-8bO"/>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="bwv-4J-FGN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -802,7 +779,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dtb-H5-NVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Dkt-5v-v9P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1860" y="-2194.4527736131936"/>
         </scene>
@@ -824,25 +800,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txG-G9-F4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1134" y="-1491"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Vub-cW-0cm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4d5-ey-4Wm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WjA-5a-1p9">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TqD-eh-dAa" kind="relationship" relationship="rootViewController" id="5Rr-aM-FC6"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tje-t1-iht" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1134" y="-2194"/>
         </scene>
     </scenes>
     <resources>

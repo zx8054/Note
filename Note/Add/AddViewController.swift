@@ -8,12 +8,14 @@
 
 import UIKit
 
-class AddViewController: UIViewController{
+class AddViewController: UIViewController,UITextViewDelegate{
 
     var selectNumber = -1
     @IBOutlet weak var chooseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
+    
     var inChoose = false
     @IBOutlet weak var contentView: UIView!
 //    var pickerView = UIPickerView
@@ -38,11 +40,10 @@ class AddViewController: UIViewController{
         pickerView.dataSource = self
 //        pickerView.isHidden = true
         
-        
-        
         chooseButton.setBackgroundImage(UIImage(named:"bookblack"), for: UIControlState())
         labelName.text = "<左边按钮选择(默认便笺)>"
         blurView.isHidden = true
+        textView.delegate = self
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
         //blurView.addSubview(pickerView)
@@ -55,14 +56,21 @@ class AddViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        if(selectNumber == -1){
+            var length = textView.text.lengthOfBytes(using: .utf8)
+            numberLabel.text = "\(length) \\ 140"
+        }
+    }
+    
 
     @IBAction func chooseButtonTouched(_ sender: UIButton) {
         inChoose = !inChoose
         if(inChoose){
             pickerView.isHidden = false
             blurView.isHidden = false
-//            textView.isHidden = true
-            
+            self.view.endEditing(true)
+//            textView.isHidden = true            
             chooseButton.setBackgroundImage(UIImage(named:"bookgreen"), for: UIControlState())
 
         }
@@ -113,14 +121,14 @@ extension AddViewController : UIPickerViewDataSource{
         if(row > 0){
         self.labelName.text = String("<") + dataManager.notebooks[row-1].noteName! + String(">")
             selectNumber = row-1
+            self.textView.allowsEditingTextAttributes = true
         }
         else{
+            self.textView.allowsEditingTextAttributes = false
             selectNumber = -1
             self.labelName.text = String("<便笺>")
         }
     }
-    
-    
 }
 
 

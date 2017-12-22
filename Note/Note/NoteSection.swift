@@ -13,25 +13,17 @@ class NoteSection{
     
     var title:String?
     var content: String? //NSMutableAttributedString?
+    var attributedContent: NSMutableAttributedString
     var time : Date?
     var representImage : UIImage = UIImage(named:"math1")!
     
-    init?(newTitle:String,newContent:String?,newTime:Date?){
+    init?(newTitle:String,newContent:String?,newTime:Date?,newAttributedContent:NSMutableAttributedString){
         
         title = newTitle
         content = newContent
         time = newTime
+        attributedContent = newAttributedContent
       
     }
-    
-    static var sharedNoteSection:[NoteSection]{
-        var items = [NoteSection]()
-        items.append(NoteSection(newTitle: "first",newContent: "firstContent",newTime: Date())!)
-        items.append(NoteSection(newTitle: "Second",newContent: "firstContent",newTime: Date())!)
-        
-        return items
-    }
-    
-    
 }
 

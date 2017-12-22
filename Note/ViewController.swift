@@ -58,7 +58,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         if let defaultNote = NoteBook(photo: defaultPhoto!, str: "默认笔记", type: .diary){
             
             notebooks += [defaultNote]
-            if let section1 = NoteSection(newTitle: "fff",newContent: "cccccc",newTime: Date()){
+            if let section1 = NoteSection(newTitle: "fff",newContent: "cccccc",newTime: Date(), newAttributedContent: NSMutableAttributedString()){
                 notebooks[0].notes += [section1]
             }
             
@@ -104,8 +104,6 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
                     else{
                         fatalError("segue error")
                     }
-                    
-                    
                 }
             }
         }
@@ -113,8 +111,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
             return
         }
     }
-    
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

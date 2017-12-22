@@ -50,13 +50,13 @@ class DataManager{
         
         if let defaultNote = NoteBook(photo: UIImage(named:"cover3")!, str: "数学", type: .diary){
             notebooks += [defaultNote]
-            if let section1 = NoteSection(newTitle: "概率论",newContent: "c",newTime: Date()){
+            if let section1 = NoteSection(newTitle: "概率论",newContent: "c",newTime: Date(), newAttributedContent: NSMutableAttributedString(string: " ")){
                 
                 section1.content = "概率论"
                 section1.representImage = UIImage(named:"math1")!
                 notebooks[0].notes += [section1]
             }
-            if let section2 = NoteSection(newTitle: "统计",newContent: "c",newTime: Date()){
+            if let section2 = NoteSection(newTitle: "统计",newContent: "c",newTime: Date(), newAttributedContent: NSMutableAttributedString(string: " ")){
                 
                 section2.representImage = UIImage(named:"math2")!
                 section2.content = "统计"

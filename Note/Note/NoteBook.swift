@@ -30,8 +30,4 @@ class NoteBook{
         noteName = str
         noteType = type
     }
-    
-    
-    
-    
 }

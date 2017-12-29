@@ -14,20 +14,33 @@ enum NoteType{
     
 }
 class NoteBook{
-    var noteCover:UIImage?
-    var noteName:String?
-    var noteType:NoteType
+    var noteCover:UIImage!
+    var noteName:String!
+    var noteBookId : Int = 0
+    var NO : Int = 0
+    var setUpTime : Date
+    var modifiedTime : Date
     
     var notes = [NoteSection]()
-    
-    init?(photo:UIImage,str:String,type:NoteType)
-    {
-        if(str.isEmpty){
-            return nil
+
+    func newSectionID()->Int{
+        var i = -1
+        for note in notes{
+            if(note.noteSectionID > i){
+                i = note.noteSectionID
+                
+            }
         }
-        
+        return (i+1)
+    }
+    
+    init?(photo:UIImage,str:String,ID:Int,newNO:Int){
         noteCover = photo
         noteName = str
-        noteType = type
+        noteBookId = ID
+        NO = newNO
+        setUpTime = Date()
+        modifiedTime = Date()
     }
+    
 }

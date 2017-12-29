@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     var imageSet = [UIImage]()
     var selectedNumber : Int = -1
@@ -18,8 +18,11 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
         if(selectedNumber != -1){
-            var note:NoteBook = NoteBook(photo: imageSet[selectedNumber], str: self.textField.text!, type: .diary)!
+            //var note:NoteBook = NoteBook(photo: imageSet[selectedNumber], str: self.textField.text!, type: .diary)!
+            let note:NoteBook = NoteBook(photo: imageSet[selectedNumber], str: self.textField.text!, ID: dataManager.newNoteBookId(), newNO: dataManager.newNoteBookNO())!
+            
             dataManager.notebooks.append(note)
+            coreDataManager.addData(noteCover: note.noteCover!, noteID: note.noteBookId, noteName: note.noteName!, setupTime: Date(), modifiedTime: Date(),noteNO:note.NO)
             self.navigationController?.popViewController(animated: true)
         }
         
@@ -51,6 +54,13 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func selectedPhoto(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -71,7 +81,23 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         }
         return reusableview
     }
-
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        dismiss(animated: true, completion: nil)
+        imageSet.append(selectedImage)
+        self.collectionView.reloadData()
+        
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -84,14 +110,14 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
 
 }
 
-extension AddNoteBookViewController:UICollectionViewDataSource{
+extension AddNoteBookViewController:UICollectionViewDataSource,UITextFieldDelegate{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return imageSet.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -113,8 +139,9 @@ extension AddNoteBookViewController:UICollectionViewDataSource{
         collectionView.reloadData()
     }
     
-    
-    
-    
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.textField.endEditing(true)
+        self.view.endEditing(true)
+        return true
+    }
 }

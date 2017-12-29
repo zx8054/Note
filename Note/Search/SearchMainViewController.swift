@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchMainViewController: UIViewController {
+class SearchMainViewController: UIViewController,UISearchBarDelegate{
     
     @IBOutlet weak var MemoButton: UIButton!
     @IBOutlet weak var NoteButton: UIButton!
@@ -75,14 +75,25 @@ class SearchMainViewController: UIViewController {
         //searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         navigationItem.titleView = searchBar
         searchBar.placeholder = "输入搜索内容"
+        searchBar.delegate = self
         
         
     }
 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //print(searchBar.text
+        searchNoteTableViewController.Search(forSearchString: searchBar.text!)
+        searchMemoTableViewController.Search(forSearchString: searchBar.text!)
+        let count1 = searchNoteTableViewController.searchNotes.count
+        let count2 = searchMemoTableViewController.searchMemos.count
+        self.NoteButton.setTitle("笔记本(\(count1))", for: UIControlState.normal)
+        self.MemoButton.setTitle("便笺(\(count2))", for: UIControlState.normal)
+    }
     @objc func currentPageChanged(notification:NSNotification){
         print("ccccc")
         currentPage = notification.object as! Int
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

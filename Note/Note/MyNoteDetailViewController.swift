@@ -7,20 +7,36 @@
 //
 
 import UIKit
+import TesseractOCR
 
-class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+
+class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,G8TesseractDelegate{
     
-    var noteDetail = NoteSection(newTitle: "s",newContent: "s",newTime: Date(), newAttributedContent: NSMutableAttributedString())
+    var isOCR:Bool = false
+    
+    var noteDetail = NoteSection(newTitle: "s", newContent: "s", newTime: Date(), newAttributedContent: NSMutableAttributedString(), bookID: 0, sectionID: 0)
+    //NoteSection(newTitle: "s",newContent: "s",newTime: Date(), newAttributedContent: NSMutableAttributedString())
+    
+    
     
     var tempContent = NSMutableAttributedString()
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     
     @IBAction func keyboardArrow(_ sender: Any) {
         self.view.endEditing(true)
     }
     
+    @IBAction func addOCR(_ sender: Any) {
+        isOCR = true
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
     @IBAction func addImage(_ sender: Any) {
+        isOCR = false
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
@@ -47,6 +63,11 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
                 }
             }
         }
+        
+        let noteSection = dataManager.notebooks[dataManager.currentIndex].notes[dataManager.currentSectionIndex]
+        noteSection.modifiedTime = Date()
+            coreDataManager.updateData(NoteBookID: noteSection.noteBookID, NoteSectionID: noteSection.noteSectionID, noteSectionContent: noteSection.content!, noteSectionAttributedContent: noteSection.attributedContent, modifiedTime: Date(), representImage: noteSection.representImage)
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
@@ -54,22 +75,29 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
-        let originalAttributedString = textView.attributedText
-        let attributedString = NSMutableAttributedString(attributedString: originalAttributedString!)
-        let textAttachment = NSTextAttachment()
+        if(isOCR){
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+            dismiss(animated: true, completion: {
+                self.InOCR(image: selectedImage)
+            })
+        }
+        else{
+            let textAttachment = NSTextAttachment()
+            textAttachment.image = selectedImage.scaleImageToFixedSize(width: textView.bounds.width-50, height: 200)
+            
+            let attrStringWithImage = NSAttributedString(attachment: textAttachment)
         
-        textAttachment.bounds = CGRect.init(x:0,y:1,width:textView.bounds.width-50,height:200)
-        textAttachment.image = selectedImage
+            textView.textStorage.insert(attrStringWithImage, at: textView.selectedRange.location)
+            tempContent =  NSMutableAttributedString(attributedString: textView.attributedText)
+            dismiss(animated: true, completion: nil)
+        }
         
-        var attrStringWithImage = NSAttributedString(attachment: textAttachment)
-    
-        textView.textStorage.insert(attrStringWithImage, at: textView.selectedRange.location)
-        tempContent =  NSMutableAttributedString(attributedString: textView.attributedText)
-        dismiss(animated: true, completion: nil)
     }
 
     
@@ -79,10 +107,9 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var toolBar: UIToolbar!
+    
     @IBAction func unwindToDetailView(segue:UIStoryboardSegue) {
         if let myView = segue.source as? addNoteSectionViewController{
-            var section = NoteSection(newTitle: myView.textField.text!, newContent: myView.textView.text, newTime: Date(), newAttributedContent: NSMutableAttributedString())
-            dataManager.notebooks[dataManager.currentIndex].notes.append(section!)
             if let menuViewController = self.revealViewController().rearViewController as?
                 NoteMenuTableViewController{
                 menuViewController.tableView.reloadData()
@@ -101,6 +128,24 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
             NoteMenuTableViewController{
             menuViewController.tableView.reloadData()
         }
+        
+        
+        if(dataManager.currentSectionIndex == -1){
+        var ttext = "\n\n\t\t\t\t目录"
+        for index in stride(from: 0, to: dataManager.notebooks[dataManager.currentIndex].notes.count, by: 1){
+            
+            ttext += "\n\n\t \(index+1). "+dataManager.notebooks[dataManager.currentIndex].notes[index].title!
+            
+        }
+        
+        self.textView.isEditable = false
+        self.textView.text = ttext
+        self.navigationItem.title = dataManager.notebooks[dataManager.currentIndex].noteName
+        }
+        else {
+            self.setSection(index: dataManager.currentSectionIndex)
+        }
+ 
     }
     
     override func viewDidLoad() {
@@ -115,7 +160,16 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        self.textView.text = nil
+        var ttext = "\n\n\t\t\t\t目录"
+        print(dataManager.currentIndex)
+        for index in stride(from: 0, to: dataManager.notebooks[dataManager.currentIndex].notes.count, by: 1){
+            
+            ttext += "\n\n\t \(index+1). "+dataManager.notebooks[dataManager.currentIndex].notes[index].title!
+            
+        }
+        
+        self.textView.isEditable = false
+        self.textView.text = ttext
         self.navigationItem.title = dataManager.notebooks[dataManager.currentIndex].noteName
         
         self.toolBar.isHidden = true
@@ -124,6 +178,7 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         self.textView.delegate = self
+        self.activityIndicator.isHidden = true
     }
     
     @objc func keyBoardWillShow(notification:NSNotification)
@@ -134,7 +189,6 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
         var keyBoardBoundsRect = self.view.convert(keyBoardBounds, to:nil)
         var deltaY = keyBoardBounds.size.height
         print(deltaY)
-        //self.toolBar.layer.
         
         self.toolBar.translatesAutoresizingMaskIntoConstraints = false
         self.toolBar.heightAnchor.constraint(equalToConstant: 40)
@@ -142,14 +196,13 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
         self.toolBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         self.toolBar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -deltaY).isActive = true
         self.toolBar.isHidden = false
-    
         self.textViewBottomConstraint.constant = -40-deltaY
         
     }
     @objc func keyBoardWillHide(notification:NSNotification){
         self.toolBar.isHidden = true
         
-        print("dd")
+        //print("dd")
         self.textViewBottomConstraint.constant = 0
     }
     
@@ -173,31 +226,34 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
 
         if let text : NSMutableAttributedString? = dataManager.notebooks[dataManager.currentIndex].notes[index].attributedContent{
             textView.attributedText = text
-            
+            self.textView.isEditable = true
         }        
-        //self.textView.attributedText = fullString
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        print(textView.text)
+        //print(textView.text)
+        self.textView.scrollRangeToVisible(self.textView.selectedRange)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print(textView.text)
+        //print(textView.text)
     }
     
-    
-//    var noteItem:NoteSection?{
-//        didSet{
-//            //tview.backgroundColor = menuItem?.color
-//            //symbol.text = menuItem?.symbol
-//            textView.text = noteItem?.content
-//
-//            UIView.animate(withDuration: 0.4, animations: {
-//                self.view.transform = CGAffineTransform.identity
-//            })
-//        }
-//    }
+    public func InOCR(image:UIImage){
+        if let tesseract = G8Tesseract(language:"chi_sim+eng") {
+            
+            tesseract.engineMode = .tesseractOnly
+            tesseract.delegate = self
+            tesseract.image = image.scaleImage(640)?.g8_blackAndWhite()
+            tesseract.recognize()
+            if let text = tesseract.recognizedText{
+                    textView.insertText(text)
+            }
+        }
+        
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+    }
 
     /*
     // MARK: - Navigation

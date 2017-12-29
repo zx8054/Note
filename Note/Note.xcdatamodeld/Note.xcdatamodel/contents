@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FirstLoad" representedClassName="FirstLoad" syncable="YES" codeGenerationType="class">
+        <attribute name="isFirst" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="MemoCoreData" representedClassName="MemoCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="backgroundImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memoID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="no" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setupDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="NoteBookCoreData" representedClassName="NoteBookCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="createTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="modifiedTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="no" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteBookID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteCover" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="noteName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hasSection" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NoteSectionCoreData" inverseName="belongToBook" inverseEntity="NoteSectionCoreData" syncable="YES"/>
+    </entity>
+    <entity name="NoteSectionCoreData" representedClassName="NoteSectionCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="attributedContent" optional="YES" attributeType="Transformable" allowsExternalBinaryDataStorage="YES" customClassName="NSMutableAttributedString" syncable="YES"/>
+        <attribute name="modifiedTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="noteBookID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noteSectionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteSectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="representImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="setupTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="belongToBook" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="NoteBookCoreData" inverseName="hasSection" inverseEntity="NoteBookCoreData" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MemoCoreData" positionX="277" positionY="87" width="128" height="135"/>
+        <element name="NoteBookCoreData" positionX="-63" positionY="-117" width="126" height="150"/>
+        <element name="NoteSectionCoreData" positionX="214" positionY="-93" width="128" height="180"/>
+        <element name="FirstLoad" positionX="108" positionY="27" width="128" height="60"/>
+    </elements>
 </model>

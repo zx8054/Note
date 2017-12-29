@@ -12,4 +12,5 @@ class NoteBookViewCell: UICollectionViewCell {
     
     @IBOutlet weak var noteCoverImage: UIImageView!
     @IBOutlet weak var noteNameLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
 }

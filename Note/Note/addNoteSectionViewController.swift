@@ -7,10 +7,24 @@
 //
 
 import UIKit
+import TesseractOCR
 
-class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,G8TesseractDelegate{
+    
+    var isOCR = false
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBAction func addOCR(_ sender: Any) {
+        
+        isOCR = true
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)        
+    }
     @IBAction func addImage(_ sender: Any) {
+        isOCR = false
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
@@ -41,31 +55,33 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
             self.present(alertController, animated: true, completion: nil)
         }
         else{
-        
-        var section = NoteSection(newTitle: textField.text!, newContent: textView.text, newTime: Date(), newAttributedContent: NSMutableAttributedString(attributedString:textView.attributedText))
-        
-        dataManager.notebooks[dataManager.currentIndex].notes.append(section!)
-        let attributedString = textView.attributedText
-        
-        var getFirstImage:Bool = false
-        let range = NSMakeRange(0, (attributedString?.length)!)
-        attributedString?.enumerateAttributes(in: range, options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, range, stop) in
+            let section = NoteSection(newTitle: textField.text!, newContent: textView.text, newTime: Date(), newAttributedContent: NSMutableAttributedString(attributedString:textView.attributedText), bookID: dataManager.notebooks[dataManager.currentIndex].noteBookId, sectionID: dataManager.notebooks[dataManager.currentIndex].newSectionID())
             
-            if object.keys.contains(NSAttributedStringKey.attachment) {
-                if let attachment = object[NSAttributedStringKey.attachment] as? NSTextAttachment {
-                    if let image = attachment.image {
-                        if(!getFirstImage){
-        
-                            let index = dataManager.notebooks[dataManager.currentIndex].notes.count - 1
-                dataManager.notebooks[dataManager.currentIndex].notes[index].representImage = image
-                            getFirstImage = true
+            let attributedString = textView.attributedText
+            var getFirstImage:Bool = false
+            let range = NSMakeRange(0, (attributedString?.length)!)
+            attributedString?.enumerateAttributes(in: range, options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, range, stop) in
+                
+                if object.keys.contains(NSAttributedStringKey.attachment) {
+                    if let attachment = object[NSAttributedStringKey.attachment] as? NSTextAttachment {
+                        if let image = attachment.image {
+                            if(!getFirstImage){
+                                section?.representImage = image
+                                getFirstImage = true
+                            }
+                            
                         }
-                        
                     }
                 }
             }
-        }
-        
+            
+            if(getFirstImage == false){
+                section?.representImage = UIImage(named:"defaultRepresent")!
+            }
+        dataManager.notebooks[dataManager.currentIndex].notes.append(section!)
+        dataManager.notebooks[dataManager.currentIndex].modifiedTime = Date()
+        coreDataManager.addData(noteBookId: (section?.noteBookID)!, noteSectionId: (section?.noteSectionID)!, noteSectionName: (section?.title)!, noteSectionContent: (section?.content)!, noteSectionAttributedContent: (section?.attributedContent)!, setupTime: (section?.time)!, modifiedTime: (section?.modifiedTime)!, representImage: (section?.representImage)!)
+            
         self.navigationController?.popViewController(animated: true)
         }
     }
@@ -79,23 +95,31 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
-        let originalAttributedString = textView.attributedText
-        let attributedString = NSMutableAttributedString(attributedString: originalAttributedString!)
-        let textAttachment = NSTextAttachment()
-        
-        textAttachment.bounds = CGRect.init(x:0,y:1,width:textView.bounds.width-10,height:200)
-        textAttachment.image = selectedImage
-        
-        var attrStringWithImage = NSAttributedString(attachment: textAttachment)
-        
-        textView.textStorage.insert(attrStringWithImage, at: textView.selectedRange.location)
-        //tempContent =  NSMutableAttributedString(attributedString: textView.attributedText)
-        dismiss(animated: true, completion: nil)
+        if(isOCR){
+            self.activityIndicator.isHidden = false
+            
+            self.activityIndicator.startAnimating()
+            
+            dismiss(animated: true, completion: {
+                self.InOCR(image: selectedImage)
+            })
+            
+        }
+        else{
+            let originalAttributedString = textView.attributedText
+            let attributedString = NSMutableAttributedString(attributedString: originalAttributedString!)
+            let textAttachment = NSTextAttachment()
+            
+            //textAttachment.bounds = CGRect.init(x:0,y:1,width:textView.bounds.width-50,height:200)
+            textAttachment.image = selectedImage.scaleImageToFixedSize(width: textView.bounds.width-50, height: 200)
+            
+            let attrStringWithImage = NSAttributedString(attachment: textAttachment)
+            
+            textView.textStorage.insert(attrStringWithImage, at: textView.selectedRange.location)
+
+            dismiss(animated: true, completion: nil)
+        }
     }
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,8 +133,7 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
                                                name: Notification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        
-        
+        self.activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -120,7 +143,7 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
         var  keyBoardBounds = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var keyBoardBoundsRect = self.view.convert(keyBoardBounds, to:nil)
-        var deltaY = keyBoardBounds.size.height
+        let deltaY = keyBoardBounds.size.height
         
         self.toolBar.translatesAutoresizingMaskIntoConstraints = false
         self.toolBar.heightAnchor.constraint(equalToConstant: 40)
@@ -129,7 +152,6 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
         self.toolBar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -deltaY).isActive = true
         
         if(self.textViewBeginEditing == true){
-            //print("first")
             self.toolBar.isHidden = false
         }
 
@@ -165,10 +187,22 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
             textView.textColor = UIColor.lightGray
         }
     }
+
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.toolBar.isHidden = true
+    public func InOCR(image:UIImage){
+        if let tesseract = G8Tesseract(language:"chi_sim+eng") {
+            
+            tesseract.engineMode = .tesseractOnly
+            tesseract.delegate = self
+            tesseract.image = image.scaleImage(640)?.g8_blackAndWhite()
+            tesseract.recognize()
+            if let text = tesseract.recognizedText{
+                textView.insertText(text)                
+            }
+        }
         
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
     }
 
     /*

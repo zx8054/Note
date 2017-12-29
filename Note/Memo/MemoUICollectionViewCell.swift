@@ -8,8 +8,15 @@
 
 import UIKit
 
+
+protocol  MemoUICollectionViewCellDelegate  {
+    func deleteMemo(_ sender:UIButton)
+}
+
 class MemoUICollectionViewCell: UICollectionViewCell {
 
+    var delegate:MemoUICollectionViewCellDelegate? = nil
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -18,5 +25,10 @@ class MemoUICollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-
+    @IBAction func deleteMemo(_ sender: UIButton) {
+        if (delegate != nil){
+            delegate?.deleteMemo(sender)
+        }
+    }
+    
 }

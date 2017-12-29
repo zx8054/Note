@@ -9,6 +9,7 @@
 class PageViewController: UIPageViewController,UIPageViewControllerDataSource
 ,UIPageViewControllerDelegate{
     
+    @IBOutlet weak var EditButton: UIBarButtonItem!
     //weak var tutorialDelegate:UIPageViewControllerDelegate?
     var pageControl = UIPageControl()
     
@@ -24,15 +25,52 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         self.view.addSubview(pageControl)
     }
     
+
+    @IBAction func setEdit(_ sender: Any) {
+        if(EditButton.title == "编辑")
+        {
+            EditButton.title = "完成"
+            if(pageControl.currentPage == 0){
+                (orderedViewControllers.first as! ViewController).setEdit()
+            }
+            else{
+                (orderedViewControllers.last as! MemoViewController).setEdit()
+            }
+            
+        }
+        else{
+            EditButton.title = "编辑"
+            if(pageControl.currentPage == 0){
+                (orderedViewControllers.first as! ViewController).endEdit()
+            }
+            else{
+                (orderedViewControllers.last as! MemoViewController).endEdit()
+            }
+        }
+        
+    }
     
     
     @IBAction func chooseForSort(_ sender: UIBarButtonItem) {
         
         let alertVC = UIAlertController(title: "选择排序方法", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         let acSortByCreateTime = UIAlertAction(title: "根据创建时间排序", style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+            
+            if(self.pageControl.currentPage == 0){
+                (self.orderedViewControllers.first as! ViewController).sortBySetUpTime()
+            }else{
+                (self.orderedViewControllers.last as! MemoViewController).sortBySetUpTime()
+            }
             print("click sort1")
         }
         let acSortByModifyTime = UIAlertAction(title: "根据修改时间排序", style: UIAlertActionStyle.default) { (UIAlertAction) -> Void in
+            
+            if(self.pageControl.currentPage == 0){
+                (self.orderedViewControllers.first as! ViewController).sortByModifiedTime()
+            }else{
+                (self.orderedViewControllers.last as! MemoViewController).sortByModifiedTime()
+            }
+            
             print("click sort2")
         }
         let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (UIAlertAction) -> Void in
@@ -43,6 +81,8 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         alertVC.addAction(acCancel)
         self.present(alertVC, animated: true, completion: nil)
     }
+    
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil

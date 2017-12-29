@@ -15,15 +15,23 @@ class NoteSection{
     var content: String? //NSMutableAttributedString?
     var attributedContent: NSMutableAttributedString
     var time : Date?
-    var representImage : UIImage = UIImage(named:"math1")!
+    var representImage : UIImage = UIImage(named:"defaultRepresent")!
+    var modifiedTime = Date()
+    var noteSectionID : Int = 0
+    var noteBookID : Int = 0
     
-    init?(newTitle:String,newContent:String?,newTime:Date?,newAttributedContent:NSMutableAttributedString){
+
+    init?(newTitle:String,newContent:String?,newTime:Date?,newAttributedContent:NSMutableAttributedString,bookID:Int,sectionID:Int){
         
+        noteBookID = bookID
+        noteSectionID = sectionID
         title = newTitle
         content = newContent
         time = newTime
         attributedContent = newAttributedContent
-      
+        
     }
+    
+    
 }
 

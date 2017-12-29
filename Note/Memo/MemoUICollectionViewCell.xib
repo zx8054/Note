@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,23 +33,36 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfS-17-o5H">
-                        <rect key="frame" x="20" y="20" width="360" height="330"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfS-17-o5H">
+                        <rect key="frame" x="20" y="20" width="360" height="355"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08k-r8-FjS">
+                        <rect key="frame" x="375" y="5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="O4f-7G-Bfi"/>
+                            <constraint firstAttribute="height" constant="20" id="nut-ZJ-rul"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="delete"/>
+                        <connections>
+                            <action selector="deleteMemo:" destination="gTV-IL-0wX" eventType="touchUpInside" id="XhJ-rf-RiA"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="QCN-yR-vsR" firstAttribute="top" secondItem="CfS-17-o5H" secondAttribute="bottom" multiplier="0.8" constant="50" id="0ch-FL-B6h"/>
+                <constraint firstAttribute="trailing" secondItem="08k-r8-FjS" secondAttribute="trailing" constant="5" id="1hz-QO-pzt"/>
                 <constraint firstAttribute="bottom" secondItem="tXR-g6-ivm" secondAttribute="bottom" id="9Yr-uU-39T"/>
-                <constraint firstItem="CfS-17-o5H" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="Mp5-MP-OPN"/>
-                <constraint firstAttribute="bottom" secondItem="CfS-17-o5H" secondAttribute="bottom" constant="50" id="PF2-Ad-6fZ"/>
+                <constraint firstItem="08k-r8-FjS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ElU-SJ-ivi"/>
                 <constraint firstItem="CfS-17-o5H" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Q2L-lp-W9X"/>
                 <constraint firstItem="tXR-g6-ivm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QlO-ca-owE"/>
                 <constraint firstAttribute="bottom" secondItem="QCN-yR-vsR" secondAttribute="bottom" constant="20" id="bOb-iZ-Fd1"/>
                 <constraint firstAttribute="trailing" secondItem="tXR-g6-ivm" secondAttribute="trailing" id="bqg-hM-RYG"/>
+                <constraint firstItem="CfS-17-o5H" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" multiplier="0.8" constant="20" id="hke-SD-AmP"/>
                 <constraint firstItem="tXR-g6-ivm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iCK-xD-N5f"/>
                 <constraint firstAttribute="trailing" secondItem="QCN-yR-vsR" secondAttribute="trailing" constant="20" id="s5N-Kf-Ysb"/>
                 <constraint firstAttribute="trailing" secondItem="CfS-17-o5H" secondAttribute="trailing" constant="20" id="xgr-zS-ckL"/>
@@ -56,10 +70,14 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="contentLabel" destination="CfS-17-o5H" id="X5M-Qs-Bgq"/>
+                <outlet property="deleteButton" destination="08k-r8-FjS" id="cgF-J9-GDj"/>
                 <outlet property="imageView" destination="tXR-g6-ivm" id="HBk-3f-DpC"/>
                 <outlet property="label" destination="QCN-yR-vsR" id="5mF-kW-ADF"/>
             </connections>
             <point key="canvasLocation" x="-73" y="48"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="delete" width="24" height="24"/>
+    </resources>
 </document>

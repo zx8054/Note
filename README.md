@@ -17,56 +17,56 @@
 ###   主界面(便笺使用瀑布流排版)
 
 * 笔记本用于记录一些具有共性的笔记，便笺用于记录临时性事务
-![image](https://github.com/zx8054/Note/screenshot/1.png)
-![image](https://github.com/zx8054/Note/screenshot/2.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/1.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/2.png)
 
 * 编辑界面(可进行删除以及移动,模仿系统app的删除移动)
-![image](https://github.com/zx8054/Note/screenshot/3.png)
-![image](https://github.com/zx8054/Note/screenshot/4.png)
-![image](https://github.com/zx8054/Note/screenshot/5.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/3.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/4.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/5.png)
 
 
 ### 快速添加
 
 * 选择界面
-![image](https://github.com/zx8054/Note/screenshot/7.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/7.png)
 
 * 便笺只能添加文字，且有文字限制，笔记本可以添加图片。二者均支持OCR
-![image](https://github.com/zx8054/Note/screenshot/8.png)
-![image](https://github.com/zx8054/Note/screenshot/9.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/8.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/9.png)
 
 ### 搜索界面
 
 * 搜索结果（高亮显示关键字)
-![image](https://github.com/zx8054/Note/screenshot/11.png)
-![image](https://github.com/zx8054/Note/screenshot/12.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/11.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/12.png)
 
 * 显示完整搜索内容
 
-![image](https://github.com/zx8054/Note/screenshot/13.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/13.png)
 
 ### 笔记本
 
 * 添加笔记本(可自定义封面图)
-![image](https://github.com/zx8054/Note/screenshot/6.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/6.png)
 
 * 主界面显示目录
-![image](https://github.com/zx8054/Note/screenshot/14.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/14.png)
 
 * 侧滑显示菜单，缩略图为文中的第一个图像，如果没有，则由系统默认设置一个缩略图
-![image](https://github.com/zx8054/Note/screenshot/15.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/15.png)
 
 * 对已存在内容进行实时编辑
-![image](https://github.com/zx8054/Note/screenshot/17.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/17.png)
 
 * 在笔记本中添加新笔记
 
-![image](https://github.com/zx8054/Note/screenshot/10.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/10.png)
 ### 排序
 
 * 根据需求进行排序
-![image](https://github.com/zx8054/Note/screenshot/18.png)
-![image](https://github.com/zx8054/Note/screenshot/19.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/18.png)
+![image](https://github.com/zx8054/Note/blob/master/screenshot/19.png)
 
 
 

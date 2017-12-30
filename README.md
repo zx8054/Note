@@ -17,30 +17,35 @@
 ###   主界面(便笺使用瀑布流排版)
 
 * 笔记本用于记录一些具有共性的笔记，便笺用于记录临时性事务
+
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/1.png)
 
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/2.png)
 
 * 编辑界面(可进行删除以及移动,模仿系统app的删除移动)
+
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/3.png)
 
 ![image4](https://github.com/zx8054/Note/blob/master/screenshot/4.png)
 
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/5.png)
+
 ### 快速添加
 
 * 选择界面
+
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/7.png)
 
 * 便笺只能添加文字，且有文字限制，笔记本可以添加图片。二者均支持OCR
+
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/8.png)
 
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/9.png)
 
-
 ### 搜索界面
 
 * 搜索结果（高亮显示关键字)
+
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/11.png)
 
 ![image3](https://github.com/zx8054/Note/blob/master/screenshot/12.png)

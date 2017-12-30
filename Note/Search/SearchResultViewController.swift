@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*note粗略展示*/
 class SearchResultViewController: UIViewController {
 
     
@@ -21,9 +22,7 @@ class SearchResultViewController: UIViewController {
         super.viewDidLoad()
         let sectionName = dataManager.notebooks[noteBookIndex].noteName! + " - " +  dataManager.notebooks[noteBookIndex].notes[noteBookSectionIndex].title!
         
-        //self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         self.navigationItem.title = sectionName
-        //self.navigationItem.backBarButtonItem.te
         
         self.textView.attributedText = dataManager.notebooks[noteBookIndex].notes[noteBookSectionIndex].attributedContent
         self.textView.isEditable = false

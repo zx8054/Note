@@ -9,8 +9,9 @@
 import UIKit
 import TesseractOCR
 
+/*快速添加界面*,采用pickerView 和 blurView实现*/
 class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-
+    
     var isOCR = false
     var selectNumber = -1
     var  textViewBeginEditing = false
@@ -29,12 +30,9 @@ class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate
     
     var inChoose = false
     @IBOutlet weak var contentView: UIView!
-//    var pickerView = UIPickerView
     
     @IBOutlet weak var blurView: UIVisualEffectView!
-    
-//    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var pickerView: UIPickerView!
+        @IBOutlet weak var pickerView: UIPickerView!
     
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
@@ -105,7 +103,6 @@ class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate
 
         pickerView.delegate = self
         pickerView.dataSource = self
-//        pickerView.isHidden = true
         self.activityIndicator.isHidden = true
         
         chooseButton.setBackgroundImage(UIImage(named:"bookblack"), for: UIControlState())
@@ -123,9 +120,6 @@ class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate
                                                name: Notification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        
-        //blurView.addSubview(pickerView)
-    
         // Do any additional setup after loading the view.
     }
 
@@ -191,7 +185,6 @@ class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate
             pickerView.isHidden = false
             blurView.isHidden = false
             self.view.endEditing(true)
-//            textView.isHidden = true            
             chooseButton.setBackgroundImage(UIImage(named:"bookgreen"), for: UIControlState())
 
         }
@@ -305,8 +298,6 @@ class AddViewController: UIViewController,UITextViewDelegate,G8TesseractDelegate
 }
 
 extension AddViewController:UIPickerViewDelegate{
-    
-    
 }
 
 extension AddViewController : UIPickerViewDataSource{
@@ -327,6 +318,7 @@ extension AddViewController : UIPickerViewDataSource{
         }
     }
     
+    //选择
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(row > 0){
         self.labelName.text = String("<") + dataManager.notebooks[row-1].noteName! + String(">")

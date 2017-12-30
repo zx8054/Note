@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*添加笔记本界面*/
 class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     var imageSet = [UIImage]()
@@ -31,8 +31,8 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         initIamgeSet()
-        collectionView.delegate = self as! UICollectionViewDelegate
-        collectionView.dataSource = self as! UICollectionViewDataSource
+        collectionView.delegate = self as UICollectionViewDelegate
+        collectionView.dataSource = self as UICollectionViewDataSource
         
         let viewNib = UINib(nibName: "NotebookCoverCollectionViewCell", bundle: nil)
         self.collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
@@ -72,12 +72,10 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         if kind == UICollectionElementKindSectionHeader{
             reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                   withReuseIdentifier: "headerView", for: indexPath)
-            //设置头部标题
             let label = reusableview.viewWithTag(1) as! UILabel
             label.text = "请选择封面"
             
-            let button = reusableview.viewWithTag(2) as! UIButton
-            //button.setBackgroundImage(UIImage(named:"camera"), for:UIControlState())
+            //let button = reusableview.viewWithTag(2) as! UIButton
         }
         return reusableview
     }
@@ -95,8 +93,6 @@ class AddNoteBookViewController: UIViewController,UICollectionViewDelegate,UICol
         dismiss(animated: true, completion: nil)
         imageSet.append(selectedImage)
         self.collectionView.reloadData()
-        
-        
     }
     /*
     // MARK: - Navigation

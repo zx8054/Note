@@ -9,22 +9,15 @@
 import UIKit
 
 class NoteMenuTableViewController: UITableViewController {
-
-    //var notes = [NoteSection]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //notes = dataManager.currentNoteBook.notes
         self.tableView.rowHeight = (tableView.bounds.size.height - 70)/10
-        
         self.tableView.reloadData()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        //self.revealViewController().rearViewRevealWidth =
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +34,6 @@ class NoteMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        //print(notes.count)
         return dataManager.notebooks[dataManager.currentIndex].notes.count
     }
 
@@ -63,9 +55,6 @@ class NoteMenuTableViewController: UITableViewController {
         else{
             cell.layer.backgroundColor = UIColor.white.cgColor
         }
-        
-        // Configure the cell...
-
         return cell
     }
     
@@ -103,8 +92,6 @@ class NoteMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-            
             let note = dataManager.notebooks[dataManager.currentIndex]
             let noteID = note.noteBookId
             let noteSectionID = note.notes[indexPath.row].noteSectionID
@@ -113,8 +100,8 @@ class NoteMenuTableViewController: UITableViewController {
             self.tableView.reloadData()
             print("delete")
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+        }
     }
 
     /*

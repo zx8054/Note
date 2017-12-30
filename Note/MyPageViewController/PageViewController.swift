@@ -6,11 +6,11 @@
 //  Copyright © 2017年 ZhengXin. All rights reserved.
 //
 
+//主界面控制器，两个page*/
 class PageViewController: UIPageViewController,UIPageViewControllerDataSource
 ,UIPageViewControllerDelegate{
     
     @IBOutlet weak var EditButton: UIBarButtonItem!
-    //weak var tutorialDelegate:UIPageViewControllerDelegate?
     var pageControl = UIPageControl()
     
     func configurePageControl() {
@@ -25,7 +25,7 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         self.view.addSubview(pageControl)
     }
     
-
+//编辑
     @IBAction func setEdit(_ sender: Any) {
         if(EditButton.title == "编辑")
         {
@@ -49,7 +49,6 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         }
         
     }
-    
     
     @IBAction func chooseForSort(_ sender: UIBarButtonItem) {
         
@@ -90,8 +89,6 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         
         let previousIndex = viewControllerIndex - 1
         
-        // User is on the first view controller and swiped left to loop to
-        // the last view controller.
         guard previousIndex >= 0 else {
             return orderedViewControllers.last
         }
@@ -101,7 +98,6 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         }
         
         return orderedViewControllers[previousIndex]
-        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -112,8 +108,6 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
         
-        // User is on the last view controller and swiped right to loop to
-        // the first view controller.
         guard orderedViewControllersCount != nextIndex else {
             return orderedViewControllers.first
         }
@@ -149,9 +143,7 @@ class PageViewController: UIPageViewController,UIPageViewControllerDataSource
                                completion: nil)
         }
         
-        configurePageControl()
-        // Do any additional setup after loading the view.
-        
+        configurePageControl()        
         
     }
     

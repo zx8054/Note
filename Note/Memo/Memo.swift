@@ -51,7 +51,4 @@ class Memo{
         let a = length - 10 < 0 ? 0 : length - 10
         return 160 + a*4
     }
-    
-    
-    
 }

@@ -15,9 +15,6 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
     var isOCR:Bool = false
     
     var noteDetail = NoteSection(newTitle: "s", newContent: "s", newTime: Date(), newAttributedContent: NSMutableAttributedString(), bookID: 0, sectionID: 0)
-    //NoteSection(newTitle: "s",newContent: "s",newTime: Date(), newAttributedContent: NSMutableAttributedString())
-    
-    
     
     var tempContent = NSMutableAttributedString()
     
@@ -231,12 +228,10 @@ class MyNoteDetailViewController: UIViewController,UITextViewDelegate,UIImagePic
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        //print(textView.text)
         self.textView.scrollRangeToVisible(self.textView.selectedRange)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        //print(textView.text)
     }
     
     public func InOCR(image:UIImage){

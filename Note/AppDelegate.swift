@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        /*初始化，从core data读取数据，再读到内存中*/
         coreDataManager.fetchFromCoreData()
         dataManager.loadDataFromCoreData()
         

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*自定义瀑布流排版*/
 protocol MyWaterFallLayoutDelegate: class {
     func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat
 }
@@ -16,7 +16,7 @@ protocol MyWaterFallLayoutDelegate: class {
 class MyWaterFallLayout: UICollectionViewLayout {
     weak var delegate: MyWaterFallLayoutDelegate!
     
-    fileprivate var numberOfColumns = 2
+    fileprivate var numberOfColumns = 2 
     fileprivate var cellPadding: CGFloat = 6
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     fileprivate var contentHeight: CGFloat = 0

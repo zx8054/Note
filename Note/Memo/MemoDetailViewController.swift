@@ -27,8 +27,6 @@ class MemoDetailViewController: UIViewController,UIImagePickerControllerDelegate
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var numberLabel: UILabel!
-
-    
     
     @IBAction func addOCR(_ sender: Any) {
         
@@ -101,7 +99,6 @@ class MemoDetailViewController: UIViewController,UIImagePickerControllerDelegate
     @objc func keyBoardWillHide(notification:NSNotification){
         self.toolBar.isHidden = true
         
-        //print("dd")
         self.textViewBottomConstraint.constant = 0
     }
     
@@ -118,7 +115,6 @@ class MemoDetailViewController: UIViewController,UIImagePickerControllerDelegate
         }
         self.navigationController?.popViewController(animated: true)
         
-        //print("save")
     }
     
     

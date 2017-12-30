@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*搜索主界面主要由一个searchBar和两个tableView构成*/
 class SearchMainViewController: UIViewController,UISearchBarDelegate{
     
     @IBOutlet weak var MemoButton: UIButton!
@@ -81,7 +82,7 @@ class SearchMainViewController: UIViewController,UISearchBarDelegate{
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //print(searchBar.text
+        //print(searchBar.text)
         searchNoteTableViewController.Search(forSearchString: searchBar.text!)
         searchMemoTableViewController.Search(forSearchString: searchBar.text!)
         let count1 = searchNoteTableViewController.searchNotes.count
@@ -90,7 +91,7 @@ class SearchMainViewController: UIViewController,UISearchBarDelegate{
         self.MemoButton.setTitle("便笺(\(count2))", for: UIControlState.normal)
     }
     @objc func currentPageChanged(notification:NSNotification){
-        print("ccccc")
+        //print("ccccc")
         currentPage = notification.object as! Int
     }
     

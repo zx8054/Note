@@ -8,6 +8,7 @@
 
 import Foundation
 
+/*对内存中数据管理*/
 class DataManager{
     
     var memos = [Memo]()
@@ -17,25 +18,19 @@ class DataManager{
     var currentNoteBook : NoteBook!
     
     
-       init(){
+    init(){
         self.currentIndex = -1
         self.currentSectionIndex = -1
-        //initNotes()
-        //initMemo()
-        }
-    
-    
-    func initMemo(){
-        
     }
+    
     func setCurrentIndex(index : Int){
         currentIndex = index
-    }
-    
+    }/*
     func setCurrentNoteBook(index:Int){
         currentIndex = index
-    }
+    }*/
     
+    /*从core data读取数据*/
     func loadDataFromCoreData(){
         let coreNoteBooks = coreDataManager.noteBooks
         for coreNoteBook in coreNoteBooks{
@@ -52,8 +47,6 @@ class DataManager{
                 tempNote.setUpTime = createTime!
                 tempNote.modifiedTime = modifiedTime!
                 notebooks += [tempNote]
-                
-                
             }
             
             notebooks.sort(by: { (notebook1, notebook2) -> Bool in
@@ -160,7 +153,6 @@ class DataManager{
         for index in stride(from: i, to: notebooks.count, by: 1){
             notebooks[index].NO -= 1
         }
-        
     }
     
     func deleteNoteSection(NoteBookID:Int,NoteSectionID:Int){
@@ -178,7 +170,6 @@ class DataManager{
         }
     }
     
-    
     func deleteMemo(memoID:Int){
         
         var i = 0
@@ -195,16 +186,13 @@ class DataManager{
         }
     }
     
-    
     func convertToChineseDate(myDate : Date) -> String? {
         let formatter = DateFormatter()
         let timeZone = TimeZone.init(identifier: "UTC")
         formatter.timeZone = timeZone
         formatter.locale = Locale.init(identifier: "zh_CN")
-        //formatter.dateFormat = "yyyy-MM-dd HH:mm"
         formatter.dateFormat = "yyyy-MM-dd"
         let str = formatter.string(from: myDate)
         return str
-        //return date.components(separatedBy: " ").first!
     }
 }

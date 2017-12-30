@@ -20,7 +20,7 @@ class CoreDataManager{
     
     
     init(){
-        
+        /*获取core data context*/
         appDelegate = (UIApplication.shared.delegate as? AppDelegate)!
         managedContext =
             appDelegate.persistentContainer.viewContext
@@ -35,8 +35,6 @@ class CoreDataManager{
             NSFetchRequest<NSManagedObject>(entityName: "NoteSectionCoreData")
         let fetchRequestMemo =
             NSFetchRequest<NSManagedObject>(entityName: "MemoCoreData")
-        
-        
         
         do {
             noteBooks = try managedContext.fetch(fetchRequestNoteBook)
@@ -78,8 +76,6 @@ class CoreDataManager{
         }  catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
-            
         
         print("sectionNum \(noteSections.count)")
         
@@ -173,7 +169,6 @@ class CoreDataManager{
         
         
         guard let imageData = UIImageJPEGRepresentation(noteCover, 1) else {
-            // handle failed conversion
             print("jpg error")
             return
         }
@@ -188,6 +183,7 @@ class CoreDataManager{
         }
         
     }
+    /*增加数据*/
     
     func deleteData(NoteBookID:Int){
         
@@ -257,7 +253,7 @@ class CoreDataManager{
             print("Could not delete. \(error), \(error.userInfo)")
         }
     }
-    
+    /*删除数据*/
     
     func updateData(NoteBookID:Int,NoteSectionID:Int,noteSectionContent:String,noteSectionAttributedContent:NSMutableAttributedString,modifiedTime:Date,representImage:UIImage){
         
@@ -333,8 +329,10 @@ class CoreDataManager{
             print("Could not update. \(error), \(error.userInfo)")
         }
     }
+    /*更新数据*/
     
     func setDefaulData(){
+        /*设置初始数据*/
         self.addData(memoId: 0, memoContent: "右上角添加按钮可以添加笔记或者便笺", backgroundImage: UIImage.init(named: "whitePaper")!, setupDate: Date(), NO: 1)
         self.addData(memoId: 1, memoContent: "左上角点击编辑后可以移动位置（长按）或者删除", backgroundImage: UIImage.init(named: "yellowPaper")!, setupDate: Date(), NO: 2)
         self.addData(memoId: 2, memoContent: "笔记中可以选择添加图片，便笺只能添加文字，二者都能使用OCR来添加内容", backgroundImage: UIImage.init(named: "bluePaper")!, setupDate: Date(), NO: 3)

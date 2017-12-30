@@ -37,7 +37,6 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
     
     
     var textViewBeginEditing = false
-    //var textFieldBeginEditing = false
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textField: UITextField!
@@ -188,7 +187,7 @@ class addNoteSectionViewController: UIViewController,UITextViewDelegate,UITextFi
         }
     }
 
-    
+    //将图片转换为文字
     public func InOCR(image:UIImage){
         if let tesseract = G8Tesseract(language:"chi_sim+eng") {
             

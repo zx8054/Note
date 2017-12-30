@@ -11,8 +11,10 @@ import UIKit
 var coreDataManager = CoreDataManager()
 var dataManager = DataManager()
 
+/*笔记本界面*/
 class ViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource,UIGestureRecognizerDelegate{
     
+    var selectedBookNO = -1
     var inEdit = false
     var selectedIndex = IndexPath.init(row: -1, section: 0)
     
@@ -31,7 +33,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         self.collectionView.reloadData()
     }
     
-    
+    /*排序*/
     func sortByModifiedTime(){
         dataManager.notebooks.sort { (notebook1, notebook2) -> Bool in
             return notebook1.modifiedTime > notebook2.modifiedTime
@@ -61,7 +63,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         
     }
  
-    
+    /*编辑模式*/
     func setEdit(){
         inEdit  = true
         self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
@@ -70,6 +72,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         inEdit = false
         self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -108,6 +111,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
         return cell
     }
     
+    /*删除*/
     @IBAction func deleteButtonTouched(_ sender: UIButton) {
         let alertController = UIAlertController(title: "警告", message: "确定要删除吗", preferredStyle: .alert)
         
@@ -134,9 +138,10 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
     
     @IBOutlet weak var NoteBookCollectionView: UICollectionView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*添加长按手势*/
         let lpgr = UILongPressGestureRecognizer(target: self, action:#selector(handleLongPress(_:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
@@ -145,8 +150,8 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
     
     }
     
+    /*collectionViewCell 移动*/
     @objc func handleLongPress(_ gestureReconizer: UILongPressGestureRecognizer) {
-
         switch(gestureReconizer.state) {
             
         case UIGestureRecognizerState.began:
@@ -154,16 +159,13 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
             if(!inEdit){
                 return
             }
-            
             guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gestureReconizer.location(in: self.collectionView)) else {
                 break
             }
-            
             selectedIndex = selectedIndexPath
             var path = [IndexPath]()
             path.append(selectedIndexPath)
             self.collectionView.reloadItems(at: path)
-            
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
             
         case UIGestureRecognizerState.changed:
@@ -173,7 +175,6 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
             collectionView.endInteractiveMovement()
             print("reloadData")
             self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
-            //self.collectionView.reloadData()
             
         default:
             collectionView.cancelInteractiveMovement()
@@ -183,8 +184,6 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
     }
     
     
-    var selectedBookNO = -1
-    
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         selectedBookNO = indexPath.row
         return true
@@ -192,7 +191,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
 
     override func prepare(for segue:UIStoryboardSegue,sender:Any?){
 
-        print("hasSelected \(selectedBookNO)")
+        //print("hasSelected \(selectedBookNO)")
         dataManager.setCurrentIndex(index: selectedBookNO)
         dataManager.currentSectionIndex = -1
     }
@@ -236,6 +235,7 @@ class ViewController: UIViewController,UICollectionViewDelegate, UICollectionVie
 }
 
 extension UIImage {
+    /*将图片按比例缩放*/
     func scaleImage(_ maxDimension: CGFloat) -> UIImage? {
         
         var scaledSize = CGSize(width: maxDimension, height: maxDimension)
@@ -256,6 +256,7 @@ extension UIImage {
         return scaledImage
     }
     
+    /*将图片缩放成固定尺寸，以便插入textView*/
     func scaleImageToFixedSize(width:CGFloat,height:CGFloat)->UIImage?{
         let scaledSize = CGSize(width: width, height: height)
         UIGraphicsBeginImageContext(scaledSize)
@@ -267,7 +268,7 @@ extension UIImage {
     }
 }
 extension UIView {
-    
+    /*自定义抖动效果*/
     func shake() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.2

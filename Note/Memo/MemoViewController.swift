@@ -106,9 +106,6 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
         setupCollectionView()
         registerNibs()
         
-    
-        
-        
         let lpgr = UILongPressGestureRecognizer(target: self, action:#selector(handleLongPress(_:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
@@ -135,28 +132,6 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
             var path = [IndexPath]()
             path.append(selectedIndexPath)
             self.collectionView.reloadItems(at: path)
-            
-            /*
-            if(!inEdit){
-                self.editButton.isHidden = false
-                self.collectionViewTopLayout.constant = 40
-                inEdit  = true
-                var arrayIndexPath = [IndexPath]()
-                for indexPath in self.collectionView.indexPathsForVisibleItems{
-                    if(indexPath != selectedIndexPath){
-                        arrayIndexPath.append(indexPath)
-                    }
-//                let endButton = UIBarButtonItem()
-//                endButton.title = "完成"
-//                endButton.target = self
-//                self.navigationItem.leftBarButtonItem = endButton
-                    
-                //endButton
-                
-                }
-                self.collectionView.reloadItems(at: arrayIndexPath)
-            }
-            */
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
             
         case UIGestureRecognizerState.changed:
@@ -165,7 +140,7 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
         case UIGestureRecognizerState.ended:
             collectionView.endInteractiveMovement()
             
-            layout.clearCache()
+            layout.clearCache() //重新布局并载入数据
             layout.invalidateLayout()
             self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
             
@@ -192,15 +167,12 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        //print("count + \(dataManager.memos.count)")
         return dataManager.memos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // Create the cell and return the cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MemoUICollectionViewCell
-        
         let memo = dataManager.memos[indexPath.row]
         
         cell.imageView.image = memo.backgounrdImage
@@ -239,8 +211,6 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //print("viewWillApprea")
-        
         super.viewWillAppear(animated)
         layout.clearCache()
         layout.invalidateLayout()
@@ -281,7 +251,6 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         super.prepare(for: segue, sender: sender)
         if let viewController = segue.destination as? MemoDetailViewController {
             viewController.memoID = dataManager.memos[didSelectedItem].memoID
@@ -301,13 +270,12 @@ class MemoViewController: UIViewController,UICollectionViewDelegate,UICollection
     */
 }
 
+/*返回每个cell的高度*/
 extension MemoViewController : MyWaterFallLayoutDelegate{
     func collectionView(_ collectionView: UICollectionView,
                         heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
-        //print("\(indexPath.row)")
         
         return CGFloat(dataManager.memos[indexPath.row].length)
-        //return photos[indexPath.item].image.size.height
     }
 }
 
